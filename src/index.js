@@ -4,6 +4,8 @@ import { Component } from 'react'
 import './index.css';
 import Header from './Header'
 import Content from './Content'
+import PropTypes from 'prop-types'
+
 // import App from './App';
 import * as serviceWorker from './serviceWorker';
 
@@ -36,6 +38,13 @@ const store = createStore(themeReducer)
 
 
 class Index extends Component{
+    static childContextTypes={
+        store:PropTypes.object
+    }
+
+    getChildContext(){
+        return {store}
+    }
     render() {
         return (
             <div>
