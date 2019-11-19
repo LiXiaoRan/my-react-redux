@@ -7,6 +7,34 @@ import Content from './Content'
 // import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+function createStore(reducer) {
+    let state=null;
+    let listeners=[]
+    let subScribe=(listener)=>listeners.push(listener);
+    let getState=() => state;
+    let dispatch=((action)=>{
+        state=reducer(state,action);
+        listeners.forEach(listener => {listener()});
+    });
+    dispatch({});
+    return {getState,dispatch,subScribe};
+}
+
+function themeReducer(state,action) {
+    if (!state) {
+        return {themeColor:'red'}
+    }
+    switch (action.type) {
+        case 'CHANGE_COLOR':         
+            return {...state,themeColor:action.themeColor};
+        default:
+            return state;
+    }
+}
+
+const store = createStore(themeReducer)
+
+
 class Index extends Component{
     render() {
         return (
