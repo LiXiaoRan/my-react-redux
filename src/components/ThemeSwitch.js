@@ -3,6 +3,11 @@ import PropTypes from 'prop-types'
 
 export default class ThemeSwitch extends Component {
 
+    static propTypes={
+        onSwitchColor:PropTypes.func,
+        themeColor:PropTypes.string
+    }
+
     handleSwitchColor(color){
         if (this.props.onSwitchColor) {
             this.props.onSwitchColor(color)
