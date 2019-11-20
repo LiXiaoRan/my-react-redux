@@ -5,7 +5,10 @@ import { connect } from "./react-redux"
 
 class Content extends Component{
     
-
+    static propTypes = {
+        themeColor: PropTypes.string,
+    }
+    
     render() {
         return (
             <div>

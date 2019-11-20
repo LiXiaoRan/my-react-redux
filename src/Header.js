@@ -4,12 +4,15 @@ import { connect } from "./react-redux"
 
 
 
-class Header extends Component{
- 
+class Header extends Component {
+    static propTypes = {
+        themeColor: PropTypes.string,
+    }
+
     render() {
         return (
             <div>
-                  <h1 style={{color:this.props.themeColor}}>React.js 小书 header</h1>
+                <h1 style={{ color: this.props.themeColor }}>React.js 小书 header</h1>
             </div>
         );
     }
@@ -21,6 +24,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-Header=connect(mapStateToProps)(Header);
+Header = connect(mapStateToProps)(Header);
 
 export default Header
