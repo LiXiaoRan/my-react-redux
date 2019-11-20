@@ -5,6 +5,7 @@ import './index.css';
 import Header from './Header'
 import Content from './Content'
 import PropTypes from 'prop-types'
+import {Provider} from './react-redux'
 
 // import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -38,13 +39,7 @@ const store = createStore(themeReducer)
 
 
 class Index extends Component{
-    static childContextTypes={
-        store:PropTypes.object
-    }
-
-    getChildContext(){
-        return {store}
-    }
+    
     render() {
         return (
             <div>
@@ -56,7 +51,7 @@ class Index extends Component{
 }
 
 
-ReactDOM.render(<Index />, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}><Index/></Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
