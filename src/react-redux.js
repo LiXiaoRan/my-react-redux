@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-export const connect = (mapStateToProps) =>(WrappedComponent) => {
+export const connect = (mapStateToProps,mapDispatchToProps) =>(WrappedComponent) => {
     class Connect extends Component {
       static contextTypes = {
         store: PropTypes.object
@@ -24,20 +24,20 @@ export const connect = (mapStateToProps) =>(WrappedComponent) => {
 
     _updateProps(){
         let {store}=this.context;
-        let stateProps=mapStateToProps(store.getState(),this.props);// 额外传入 props，让获取数据更加灵活方便(不能让被包裹的组件原本的props没了)
+        let stateProps=mapStateToProps?mapStateToProps(store.getState(),this.props):{};// 额外传入 props，让获取数据更加灵活方便(将（Connect组件）原本的props也传了过去)
+        let dispatchProps=mapDispatchToProps?mapDispatchToProps(store.dispatch,this.props):{}; // 防止 mapDispatchToProps 没有传入 
+        
         this.setState({
           allProps:{// 整合普通的 props 和从 state 生成的 props
             ...stateProps,
-            ...this.props
+            ...dispatchProps,
+            ...this.props            
           }
         })
     }
 
       render () {
-        //从 store 取数据
-        // const {store}=this.context;
-        // let stateProps=mapStateToProps(store.getState());
-        // {...stateProps} 意思是把这个对象里面的属性全部通过 `props` 方式传递进去
+        
         return <WrappedComponent {...this.state.allProps}/>
       }
     }

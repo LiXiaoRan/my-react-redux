@@ -4,31 +4,7 @@ import ThemeSwitch from './ThemeSwitch'
 import { connect } from "./react-redux"
 
 class Content extends Component{
-     static contextTypes = {
-        store: PropTypes.object
-     }
-
-
-    constructor() {
-        super()
-        this.state={
-            themeColor:''
-        }
-    }
-
-    // componentWillMount(){
-    //     let {store}=this.context;
-    //     this._updateThemeColor()
-    //     store.subScribe(()=>{this._updateThemeColor()})
-
-    // }
-
-    // _updateThemeColor(){
-    //     let {store}=this.context;
-    //     let state=store.getState();
-    //     this.setState({themeColor:state.themeColor})       
-    // }
-
+    
 
     render() {
         return (

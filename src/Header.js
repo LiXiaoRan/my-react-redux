@@ -5,30 +5,7 @@ import { connect } from "./react-redux"
 
 
 class Header extends Component{
-    static contextTypes={
-        store:PropTypes.object
-    }
-
-    constructor(props) {
-        super(props);
-        this.state={
-            themeColor:''
-        }
-    }
-    
-    // componentWillMount(){
-    //     let {store}=this.context;
-    //     this._updateThemeColor();
-    //     store.subScribe(()=>{this._updateThemeColor()})
-
-    // }
-
-    // _updateThemeColor(){
-    //     let {store}=this.context;
-    //     let state=store.getState();
-    //     this.setState({themeColor:state.themeColor});
-    // }
-
+ 
     render() {
         return (
             <div>
