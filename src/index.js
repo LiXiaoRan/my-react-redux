@@ -2,26 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Component } from 'react'
 import './index.css';
-import Header from './Header'
-import Content from './Content'
-import PropTypes from 'prop-types'
-import {Provider} from './react-redux'
+import Header from './containers/Header'
+import Content from './containers/Content'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+
 
 // import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-function createStore(reducer) {
-    let state=null;
-    let listeners=[]
-    let subScribe=(listener)=>listeners.push(listener);
-    let getState=() => state;
-    let dispatch=((action)=>{
-        state=reducer(state,action);
-        listeners.forEach(listener => {listener()});
-    });
-    dispatch({});
-    return {getState,dispatch,subScribe};
-}
 
 function themeReducer(state,action) {
     if (!state) {
